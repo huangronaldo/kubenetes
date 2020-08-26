@@ -105,7 +105,8 @@ kube-scheduler 监视新创建没有分配到Node的Pod，为Pod选择一个Node
 
 #### Node组件
 
-```
+``` 
+
 节点组件运行在Node，提供Kubernetes运行时环境，以及维护Pod。
 ```
 
