@@ -192,3 +192,5 @@ $ kubectl delete namespaces new-namespace
 ```
 $ kubectl get namespaces
 ```
+
+
