@@ -60,16 +60,18 @@ K8s系统最核心的两个设计理念：一个是容错性，一个是易扩�
 #### Master组件
 Master组件提供集群的管理控制中心。
 ##### kube-apiserver
+
 ```
 kube-apiserver用于暴露Kubernetes API。任何的资源请求/调用操作都是通过kube-apiserver提供的接口进行。
 ```
 ##### ETCD
+
 ```
 etcd是Kubernetes提供默认的存储系统，保存所有集群数据，使用时需要为etcd数据提供备份计划。
 ```
 ##### kube-controller-manager
-``` 
 
+``` 
 kube-controller-manager运行管理控制器，它们是集群中处理常规任务的后台线程。逻辑上，每个控制器是一个单独的进程，但为了降低复杂性，它们都被编译成单个二进制文件，并在单个进程中运行。
 ```
   * 节点（Node）控制器。
@@ -79,7 +81,6 @@ kube-controller-manager运行管理控制器，它们是集群中处理常规任
 ##### cloud-controller-manager
 ```
 云控制器管理器负责与底层云提供商的平台交互。云控制器管理器是Kubernetes版本1.6中引入的，目前还是Alpha的功能。
-
 云控制器管理器仅运行云提供商特定的（controller loops）控制器循环。可以通过将--cloud-provider flag设置为external启动kube-controller-manager ，来禁用控制器循环。
 ```
 * cloud-controller-manager 具体功能：
@@ -88,12 +89,13 @@ kube-controller-manager运行管理控制器，它们是集群中处理常规任
   * 服务（Service）控制器
   * 卷（Volume）控制器
 ##### kube-scheduler
+
 ```
 kube-scheduler 监视新创建没有分配到Node的Pod，为Pod选择一个Node。
 ```
 ##### 插件addons
-``` 
 
+``` 
 插件（addon）是实现集群pod和Services功能的 。Pod由Deployments，ReplicationController等进行管理。Namespace 插件对象是在kube-system Namespace中创建。
 ```
 * DNS: 群集DNS是一个DNS服务器，能够为Kubernetes services提供DNS记录。
@@ -103,4 +105,7 @@ kube-scheduler 监视新创建没有分配到Node的Pod，为Pod选择一个Node
 
 #### Node组件
 
+```
+节点组件运行在Node，提供Kubernetes运行时环境，以及维护Pod。
+```
 
