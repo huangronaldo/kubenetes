@@ -51,6 +51,7 @@
   * 每个模块都可以在必要时优雅地降级服务
 #### kubernetes的核心技术概念和API对象
 > API对象是K8s集群中的管理操作单元。K8s集群系统每支持一项新功能，引入一项新技术，一定会新引入对应的API对象，支持对该功能的管理操作。例如副本集Replica Set对应的API对象是RS。
+
 > K8s系统最核心的两个设计理念：一个是容错性，一个是易扩展性。容错性实际是保证K8s系统稳定性和安全性的基础，易扩展性是保证K8s对变更友好，可以快速迭代增加新功能的基础。
 
 ## 基础概念
@@ -70,6 +71,7 @@
   * Service Account和Token控制器：为新的Namespace 创建默认帐户访问API Token。
 ##### cloud-controller-manager
 > 云控制器管理器负责与底层云提供商的平台交互。云控制器管理器是Kubernetes版本1.6中引入的，目前还是Alpha的功能。
+
 > 云控制器管理器仅运行云提供商特定的（controller loops）控制器循环。可以通过将--cloud-provider flag设置为external启动kube-controller-manager ，来禁用控制器循环。
 * cloud-controller-manager 具体功能：
   * 节点（Node）控制器
