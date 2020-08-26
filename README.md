@@ -55,7 +55,7 @@
 > K8s系统最核心的两个设计理念：一个是容错性，一个是易扩展性。容错性实际是保证K8s系统稳定性和安全性的基础，易扩展性是保证K8s对变更友好，可以快速迭代增加新功能的基础。
 
 ## 基础概念
-### 组件
+### kubernetes组件
 #### Master组件
 > Master组件提供集群的管理控制中心。
 ##### kube-apiserver
@@ -112,4 +112,51 @@
 > supervisord是一个轻量级的监控系统，用于保障kubelet和docker运行。
 
 ##### fluentd
-> fluentd是一个守护进程，可提供cluster-level logging.。
+> fluentd是一个守护进程，可提供cluster-level logging。
+
+### kubernetes对象
+> Kubernetes对象是Kubernetes系统中的持久实体。Kubernetes使用这些实体来表示集群的状态。具体来说，他们可以描述：
+
+* 容器化应用正在运行(以及在哪些节点上)
+* 这些应用可用的资源
+* 关于这些应用如何运行的策略，如重新策略，升级和容错
+> Kubernetes对象是“record of intent”，一旦创建了对象，Kubernetes系统会确保对象存在。通过创建对象，可以有效地告诉Kubernetes系统你希望集群的工作负载是什么样的。
+
+#### 对象（Object）规范和状态
+> 每个Kubernetes对象都包含两个嵌套对象字段，用于管理Object的配置：Object Spec和Object Status。Spec描述了对象所需的状态 - 希望Object具有的特性，Status描述了对象的实际状态，并由Kubernetes系统提供和更新。
+#### 描述Kubernetes对象
+> 在Kubernetes中创建对象时，必须提供描述其所需Status的对象Spec，以及关于对象（如name）的一些基本信息。当使用Kubernetes API创建对象（直接或通过kubectl）时，该API请求必须将该信息作为JSON包含在请求body中。通常，可以将信息提供给kubectl .yaml文件，在进行API请求时，kubectl将信息转换为JSON。
+
+> 例子：nginx_deployment.yaml
+``` yaml
+apiVersion: apps/v1beta1
+kind: Deployment
+metadata:
+  name: nginx-deployment
+spec:
+  replicas: 3
+  template:
+    metadata:
+      labels:
+        app: nginx
+    spec:
+      containers:
+      - name: nginx
+        image: nginx:1.7.9
+        ports:
+        - containerPort: 80
+```
+> 创建Deployment对象，通过使用kubectl create命令来实现。
+
+``` shell
+$ kubectl create -f docs/user-guide/nginx-deployment.yaml --record
+```
+#### 必填字段
+> 对于要创建的Kubernetes对象的yaml文件，需要为以下字段设置值:
+
+> * apiVersion - 创建对象的Kubernetes API 版本
+> * kind - 要创建什么样的对象？
+> * metadata- 具有唯一标示对象的数据，包括 name（字符串）、UID和Namespace（可选项）
+
+> 还需要提供对象Spec字段，对象Spec的精确格式（对于每个Kubernetes 对象都是不同的），以及容器内嵌套的特定于该对象的字段。Kubernetes API reference可以查找所有可创建Kubernetes对象的Spec格式。
+
