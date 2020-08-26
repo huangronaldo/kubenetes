@@ -96,10 +96,10 @@ kube-scheduler 监视新创建没有分配到Node的Pod，为Pod选择一个Node
 
 插件（addon）是实现集群pod和Services功能的 。Pod由Deployments，ReplicationController等进行管理。Namespace 插件对象是在kube-system Namespace中创建。
 ```
-* DNS:群集DNS是一个DNS服务器，能够为Kubernetes services提供DNS记录。
-* 用户界面:kube-ui提供集群状态基础信息查看。
-* 容器资源监测:容器资源监控提供一个UI浏览监控数据。
-* Cluster-level Logging:负责保存容器日志，搜索/查看日志。
+* DNS: 群集DNS是一个DNS服务器，能够为Kubernetes services提供DNS记录。
+* 用户界面: kube-ui提供集群状态基础信息查看。
+* 容器资源监测: 容器资源监控提供一个UI浏览监控数据。
+* Cluster-level Logging: 负责保存容器日志，搜索/查看日志。
 
 #### Node组件
 
