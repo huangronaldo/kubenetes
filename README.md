@@ -91,5 +91,25 @@
 
 #### Node组件
 > 节点组件运行在Node，提供Kubernetes运行时环境，以及维护Pod。
+##### kubelet
+> kubelet是主要的节点代理，它会监视已分配给节点的pod，具体功能：
+* 安装Pod所需的volume。
+* 下载Pod的Secrets。
+* Pod中运行的 docker（或experimentally，rkt）容器。
+* 定期执行容器健康检查。
+* Reports the status of the pod back to the rest of the system, by creating a mirror pod if necessary.
+* Reports the status of the node back to the rest of the system.
+##### kube-proxy
+> kube-proxy通过在主机上维护网络规则并执行连接转发来实现Kubernetes服务抽象。
 
+##### docker
+> docker用于运行容器。
 
+##### RKT
+> rkt运行容器，作为docker工具的替代方案。
+
+##### supervisord
+> supervisord是一个轻量级的监控系统，用于保障kubelet和docker运行。
+
+##### fluentd
+> fluentd是一个守护进程，可提供cluster-level logging.。
