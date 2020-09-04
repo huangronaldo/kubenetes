@@ -2,7 +2,7 @@
 > 以下为ubuntu 18.04部署k8s（单个master与单个node）实战记录片段。记录下来，以便后续查错与分享。步骤如下：
 
   * 机器环境信息
-  * 修改ubuntu配置
+  * 初始化ubuntu环境配置
   * 安装docker
   * 安装kubeadm、kubectl以及kubelet
   * 初始化master节点
@@ -40,6 +40,21 @@ ssh-copy-id -p22 -i ~/.ssh/id_rsa.pub root@172.30.77.216
 swapoff -a
 # 修改/etc/fstab注释配置信息，重启生效
 vim /etc/fstab
+```
+
+* 时间同步
+```
+apt install ntpdate
+ntpdate 0.rhel.pool.ntp.org
+```
+
+* 配置host
+```
+vim /etc/hosts
+# 配置所有节点信息
+172.30.77.215    master01
+172.30.77.216    worker01
+
 ```
 
 #### 2.3 安装docker
@@ -91,7 +106,8 @@ vim /etc/docker/daemon.json
     "https://registry.docker-cn.com",
     "http://hub-mirror.c.163.com",
     "https://docker.mirrors.ustc.edu.cn"
-  ]
+  ],
+  "exec-opts": ["native.cgroupdriver=systemd"]
 }
 ```
 * 重启docker
@@ -187,7 +203,10 @@ kubectl get cs
 > 注意最新DaemonSet版本已经成为apps/v1，采用以下方式。
 ```
 kubectl apply -f https://raw.githubusercontent.com/coreos/flannel/master/Documentation/kube-flannel.yml
+# 验证flannel网络插件是否部署成功（Running即为成功）
+kubectl get pods -n kube-system |grep flannel   
 ```
+
 
 #### 2.6  将 slave 节点加入网络
 > 注意：以下所有命令只在worker节点执行。
