@@ -18,6 +18,14 @@
 
 #### 2.2 修改ubuntu配置
 > k8s 要求 管理节点可以直接免密登录工作节点 的原因是：在集群搭建完成后，管理节点的 kubelet 需要登陆工作节点进行操作。
+
+* 关闭selinux
+```
+vim /etc/sysconfig/selinux
+# 将SELINUX=disabled
+setenforce 0
+```
+
 * SSH免密登录
 ```
 # 生成证书，可指定生成文件和使用密码
