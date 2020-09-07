@@ -80,5 +80,4 @@ nohup kubectl proxy --address=172.30.77.215 --disable-filter=true &
 ```
 
 访问地址：
-http://172.30.77.215:8001/api/v1/namespaces/kube-system/services/https:kubernetes-dashboard:/proxy/#!/login
-
+http://localhost:8001/api/v1/namespaces/kubernetes-dashboard/services/https:kubernetes-dashboard:/proxy/#/login
