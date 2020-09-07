@@ -73,3 +73,12 @@ kubectl create -f account.yaml
 ```
 kubectl -n kube-system describe secret $(kubectl -n kube-system get secret | grep admin-user | awk '{print $1}')
 ```
+
+### kubectl proxy 方式访问
+```
+nohup kubectl proxy --address=172.30.77.215 --disable-filter=true &
+```
+
+访问地址：
+http://172.30.77.215:8001/api/v1/namespaces/kube-system/services/https:kubernetes-dashboard:/proxy/#!/login
+
