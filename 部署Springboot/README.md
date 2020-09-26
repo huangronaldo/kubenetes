@@ -86,3 +86,15 @@ spec:
 ```
 kubectl create -f springboot-rc.yml
 ```
+* 删除容器
+```
+kubectl delete -f springboot.yml 
+```
+* 查看容器
+```
+kubectl get pods
+```
+* 查看容器日志
+```
+kubectl logs 容器id
+```
