@@ -31,7 +31,7 @@ docker build -t springboot-demo .
 ```
 
 * 上传镜像
-> 因国内拉取docker hub速度比较慢，所以先选国内的仓库，可以去阿里云注册账号
+> 因国内拉取docker hub速度比较慢，所以先选国内的仓库，可以去阿里云注册账号:https://cr.console.aliyun.com/
 
 ```
 # 登陆
