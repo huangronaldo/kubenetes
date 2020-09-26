@@ -31,7 +31,7 @@ spec:
     spec:
       containers: #docker容器的配置
       - name: springboot-demo
-        image: registry.cn-hangzhou.aliyuncs.com/huangt/test:springboot-demo # pull镜像的地址 ip:prot/dir/images:tag
+        image: registry.cn-hangzhou.aliyuncs.com/huangt/springboot-demo:1.0.0-test # pull镜像的地址 ip:prot/dir/images:tag
         imagePullPolicy: IfNotPresent #pull镜像时机，
         ports:
         - containerPort: 8881 #容器对外开放端口
