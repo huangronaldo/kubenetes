@@ -1,0 +1,51 @@
+### Volume
+> 默认情况下容器中的磁盘文件是非持久化的，对于运行在容器中的应用来说面临两个问题，第一：当容器挂掉kubelet将重启启动它时，文件将会丢失；第二：当Pod中同时运行多个容器，容器之间需要共享文件时。Kubernetes的Volume解决了这两个问题。
+
+#### Volume 类型
+* emptyDir
+* hostPath
+* gcePersistentDisk
+* awsElasticBlockStore
+* nfs
+* iscsi
+* fc (fibre channel)
+* flocker
+* glusterfs
+* rbd
+* cephfs
+* gitRepo
+* secret
+* persistentVolumeClaim
+* downwardAPI
+* projected
+* azureFileVolume
+* azureDisk
+* vsphereVolume
+* Quobyte
+* PortworxVolume
+* ScaleIO
+* StorageOS
+* local
+
+#### emptyDir
+> 使用emptyDir，当Pod分配到Node上时，将会创建emptyDir，并且只要Node上的Pod一直运行，Volume就会一直存。当Pod（不管任何原因）从Node上被删除时，emptyDir也同时会删除，存储的数据也将永久删除。注：删除容器不影响emptyDir。
+```
+apiVersion: v1
+kind: Pod
+metadata:
+  name: test-pd
+spec:
+  containers:
+  - image: gcr.io/google_containers/test-webserver
+    name: test-container
+    volumeMounts:
+    - mountPath: /cache
+      name: cache-volume
+  volumes:
+  - name: cache-volume
+    emptyDir: {}
+```
+
+#### 
+
+
