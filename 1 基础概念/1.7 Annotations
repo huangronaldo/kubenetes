@@ -1,0 +1,4 @@
+### Annotations
+> 可以使用Kubernetes Annotations将任何非标识metadata附加到对象。客户端（如工具和库）可以检索此metadata。
+
+注意：Annotations不会被Kubernetes直接使用，其主要目的是方便用户阅读查找。
