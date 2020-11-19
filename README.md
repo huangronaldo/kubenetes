@@ -1,5 +1,5 @@
-# kubenetes学习笔记与总结
-## 什么是kubenetes
+# kubernetes学习笔记与总结
+## 什么是kubernetes
 > Kubernetes是容器集群管理系统，是一个开源的平台，可以实现容器集群的自动化部署、自动扩缩容、维护等功能。
 ### Kubernetes 特点 
   * 可移植: 支持公有云，私有云，混合云，多重云（multi-cloud）
@@ -14,8 +14,8 @@
   * 扩展应用程序
   * 更新应用程序
 ### why containers ？
-### kubenetes设计
-#### kubenetes架构
+### kubernetes设计
+#### kubernetes架构
 > Kubernetes借鉴了Borg的设计理念，比如Pod、Service、Labels和单Pod单IP等
 * Kubernetes主要由以下几个核心组件组成：
   * etcd保存了整个集群的状态；
@@ -32,7 +32,7 @@
   * Dashboard提供GUI
   * Federation提供跨可用区的集群
   * Fluentd-elasticsearch提供集群日志采集、存储与查询
-#### kubenetes设计理念
+#### kubernetes设计理念
 * API设计原则
   * 所有API应该是声明式的
   * API对象是彼此互补而且可组合的
@@ -49,7 +49,7 @@
   * 假设任何操作都可能被任何操作对象拒绝，甚至被错误解析
   * 每个模块都可以在出错后自动恢复
   * 每个模块都可以在必要时优雅地降级服务
-#### kubenetes分层架构
+#### kubernetes分层架构
 
 * 核心层：Kubernetes最核心的功能，对外提供API构建高层的应用，对内提供插件式应用执行环境
 * 应用层：部署（无状态应用、有状态应用、批处理任务、集群应用等）和路由（服务发现、DNS解析等）
